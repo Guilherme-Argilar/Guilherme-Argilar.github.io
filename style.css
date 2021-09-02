@@ -1,6 +1,9 @@
 /*Global*/
 :root{
     --dark-blue:#363f5f;
+    --green:#49aa26;
+    --light-green:#3dd705;
+    --red: #e92929;
 }
 * {
   margin: 0;
@@ -8,6 +11,9 @@
   box-sizing: border-box;
 }
 
+html{
+    font-size: 93.75%; /*15 px */
+}
 
 body{
     background: #f0f2f5;
@@ -37,6 +43,51 @@ h2{
     color:var(--dark-blue);
     font-weight:normal;
 }
+/*links and buttons*/
+a{
+    color:green;
+    text-decoration:none;
+}
+a:hover{
+    color:var(lightgreen);
+    text-decoration:none;
+}
+button{
+    width: 100%;
+    height: 50px;
+    border:none;
+    color:white;
+    background:var(--green);
+    padding:0;
+    border-radius:.25rem;
+    cursor:pointer;
+
+}
+
+button:hover{
+    background: var(--light-green)
+}
+.button.new{
+    display:inline-block;
+    margin-bottom: .9rem;
+}
+
+.button.cancel{
+    color:var(--red);
+    border: 2px var(--red) solid;
+    border-radius:.25rem;
+    height:50px;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    opacity:0.6;
+
+}
+.button.cancel:hover{
+    opacity: 1;
+}
+
+
 /*=======HEADER=============*/
 header{
     background: #2d4A22;
@@ -89,21 +140,31 @@ header{
 }
 
 .card.total{
-    background: #49aa26;
+    background: green;
     color:#fff;
 }
 
 /*Table=================*/
+#transaction{
+        display:block;
+        width:100%;
+        overflow-x: auto;
+}
 #data-table{
     width: 100%;
     border-spacing: 0 0.5rem;
     color: #969cb3;
-
 }
+
 table thead tr th:first-child,
 table tbody tr td:first-child{
     border-radius: 0.25rem 0 0 0.25rem;
 
+}
+
+table thead tr th:last-child,
+table tbody tr td:last-child{
+    border-radius: 0 0.25rem 0.25rem 0 ;
 }
 
 table thead th{
@@ -142,12 +203,92 @@ td.expenses{
     color:#e92929;
 
 }
+/*Modal----------------------*/
+.modal-overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .70);
+    position: fixed;
+    top: 0;
 
 
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+}
+
+.modal-overlay.active{
+    opacity: 1;
+    visibility: visible;
+}
+.modal-body{
+    background: #F0F2F5;
+    padding: 2.4rem;
+    position:relative;
+    width: 90%;
+    max-width: 500px;
+    z-index: 1;
+
+}
+/*Form=--=-=-=-=-=-=-=--=-=-=-=-*/
+#form{
+    max-width: 500px;
+}
+#form h2{
+    margin-top:0;
+}
+input{
+    border:none;
+    border-radius: .2rem;
+    padding: .8rem;
+    width: 100%;
+}
+
+.input-group{
+    margin-top:.8rem;
+    
+}
+
+.input-group small{
+    opacity: .4;
+    
+}
+
+.input-group.actions{
+
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+
+}
+
+.input-group.actions .button,
+.input-group.actions button{
+    width:80%;
+}
 /*Footer=================*/
 footer{
     text-align: center;
     padding:4rem 0 2rem;
     color: var(--dark-blue);
     opacity: 0.6;
+}
+
+
+/*Responsive=================*/
+
+@media (min-width: 800px) {
+    html{
+        font-size:87.5% /*14px*/
+    }
+
+    #balance{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 2rem;
+    }
+
 }
